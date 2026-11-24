@@ -10,18 +10,17 @@
 <body>
     <h1>Sistema de Nómina</h1>
     <p>
+        {% if user.is_authenticated %}
         <button><a href="{% url 'rol_list' %}">Roles de Pago</a></button>
         <button><a href="{% url 'empleado_list' %}">Empleados</a></button>
         <button><a href="{% url 'departamento_list' %}">Departamentos</a></button>
         <button><a href="{% url 'concepto_list' %}">Conceptos Salariales</a></button>
-        {% if user.is_authenticated %}
             Usuario: {{ user.username }}
             <form action="{% url 'logout' %}" method="post" style="display:inline;">
                 {% csrf_token %}
                 <button type="submit">Cerrar sesión</button>
             </form>
         {% else %}
-            <button><a href="{% url 'login' %}">Iniciar sesión</a></button>
             <button><a href="{% url 'registro' %}">Registrarse</a></button>
         {% endif %}
     </p>
